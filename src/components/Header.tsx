@@ -28,32 +28,6 @@ const Header = ({ isDemo, prices, lastUpdated }: HeaderProps) => {
     }
     return false;
   });
-  const [countdown, setCountdown] = useState<string>('8:00:00');
-
-  useEffect(() => {
-    if (isDemo || !lastUpdated) return;
-
-    const interval = setInterval(() => {
-      const now = Date.now();
-      const diff = Math.max(0, 28800000 - (now - lastUpdated)); // 8 hours in ms
-
-      const hours = Math.floor(diff / 3600000);
-      const minutes = Math.floor((diff % 3600000) / 60000);
-      const seconds = Math.floor((diff % 60000) / 1000);
-
-      if (hours > 0) {
-        setCountdown(`${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
-      } else {
-        setCountdown(`${minutes}:${seconds.toString().padStart(2, '0')}`);
-      }
-
-      if (diff <= 0) {
-        clearInterval(interval);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [lastUpdated, isDemo]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -113,12 +87,7 @@ const Header = ({ isDemo, prices, lastUpdated }: HeaderProps) => {
 
         {/* Right Side: Status & Theme */}
         <div className="flex items-center gap-3 shrink-0">
-          {/* Countdown */}
-          {!isDemo && (
-            <span className="text-[10px] font-price font-medium text-muted-foreground tabular-nums hidden sm:inline-block">
-              {countdown}
-            </span>
-          )}
+
 
           {/* Live/Demo Badge */}
           <div className={cn(

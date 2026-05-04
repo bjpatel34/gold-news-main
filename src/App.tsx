@@ -151,25 +151,7 @@ const App = () => {
           prices={prices}
         />
 
-        {/* Status Indicators */}
-        <div className="fixed bottom-6 left-6 z-40 flex flex-col gap-2 animate-in fade-in slide-in-from-left-4 duration-500">
-          {isLivePrices ? (
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-background/80 backdrop-blur-md border border-chart-up/30 rounded-full shadow-lg">
-              <div className="w-2 h-2 bg-chart-up rounded-full animate-pulse" />
-              <span className="text-[10px] font-bold text-chart-up uppercase tracking-wider">LIVE GOLD-API DATA</span>
-            </div>
-          ) : isQuotaExhausted ? (
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-background/80 backdrop-blur-md border border-warning/30 rounded-full shadow-lg">
-              <div className="w-2 h-2 bg-warning rounded-full" />
-              <span className="text-[10px] font-bold text-warning uppercase tracking-wider">Quota Exhausted (Demo)</span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-background/80 backdrop-blur-md border border-muted-foreground/30 rounded-full shadow-lg">
-              <div className="w-2 h-2 bg-muted-foreground rounded-full" />
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Demo Mode</span>
-            </div>
-          )}
-        </div>
+
 
         <FloatingTools onOpenCalculator={() => setIsDrawerOpen(true)} />
 
