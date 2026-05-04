@@ -1,73 +1,72 @@
-# Welcome to your Daily Newsproject
+# GoldPolice — Live Gold & Silver Price in India Today
 
-## Project info
+GoldPolice is a comprehensive, real-time fintech terminal designed to track live Gold and Silver prices in India. It offers accurate conversions, market premiums, and automated price refresh mechanisms to ensure a seamless and reliable user experience.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Live Precious Metal Prices:** Real-time tracking of Gold (per 10g) and Silver (per 1kg) in INR.
+- **Advanced Currency Conversion:** Live USD-to-INR conversion logic with calibrated Indian market premiums.
+- **Robust API Integrations:** Powered by Gold-API.com and Metals.Dev for real-time market data, with intelligent fallbacks.
+- **Automated Refresh System:** Decoupled data pipelines to refresh prices and news streams at optimal intervals without hitting rate limits.
+- **High-Fidelity UI:** A responsive, premium dashboard built with shadcn/ui, Tailwind CSS, and a custom-animated 3D AI Analyst bot.
+- **Resilience:** Built-in caching and mock data fallbacks to guarantee 100% UI uptime even during API disruptions.
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+- **Frontend Framework:** React 18, Vite
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS, shadcn/ui
+- **State & Data Management:** React Query, React Router DOM
+- **Data APIs:** Gold-API.com, Metals.Dev, NewsData.io
+- **Icons:** Lucide React
 
-Simply visit the [Daily NewsProject](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Getting Started
 
-Changes made via Daily Newswill be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js & npm installed
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/bjpatel34/gold-news-main.git
+   ```
 
-Follow these steps:
+2. Navigate to the project directory:
+   ```sh
+   cd gold-news-main
+   ```
 
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+4. Set up Environment Variables:
+   Create a `.env` file in the root directory and add the necessary API keys for Gold-API.com, Metals.Dev, and NewsData.io.
+
+5. Start the development server:
+   ```sh
+   npm run dev
+   ```
+
+### Building for Production
+
+To create a production-ready build:
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+The compiled application will be generated in the `dist` folder.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Project Architecture
 
-**Use GitHub Codespaces**
+- **`src/components/`**: Reusable UI components (buttons, dialogs, cards, etc.).
+- **`src/lib/`**: Core utilities, API clients (e.g., `goldApi.ts`), and application configurations.
+- **`src/pages/`**: Main application routes and page-level layouts.
+- **`public/`**: Static assets including logos, icons, and 3D character models.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## License
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Daily Newsproject?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This project is proprietary and confidential. Unauthorized copying of this file, via any medium, is strictly prohibited unless explicitly authorized.
