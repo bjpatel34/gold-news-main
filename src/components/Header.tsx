@@ -1,5 +1,6 @@
 import { Moon, Sun } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import { MetalPrice } from '@/data/mockData';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -12,6 +13,8 @@ interface HeaderProps {
 
 const Header = ({ isDemo, prices, lastUpdated }: HeaderProps) => {
   const prevIsDemoRef = useRef(isDemo);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     if (prevIsDemoRef.current !== isDemo) {
@@ -77,12 +80,18 @@ const Header = ({ isDemo, prices, lastUpdated }: HeaderProps) => {
           ].map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={isHome ? link.href : `/${link.href}`}
               className="text-[11px] font-body font-bold uppercase tracking-[0.2em] text-muted-foreground hover:text-gold transition-colors"
             >
               {link.label}
             </a>
           ))}
+          <Link
+            to="/blog"
+            className="text-[11px] font-body font-bold uppercase tracking-[0.2em] text-muted-foreground hover:text-gold transition-colors"
+          >
+            Market Guide
+          </Link>
         </nav>
 
         {/* Right Side: Status & Theme */}

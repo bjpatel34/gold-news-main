@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { toast } from 'sonner';
+
+import Blog from '@/pages/Blog';
+import BlogPost from '@/pages/BlogPost';
 
 import Header from '@/components/Header';
 import MetalPriceCards from '@/components/MetalPriceCards';
@@ -132,76 +136,79 @@ const App = () => {
     <TooltipProvider>
       <Toaster />
       <Sonner position="top-right" />
-
-      <div className="min-h-screen bg-background relative">
-        {/* Ambient background glows */}
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-          <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-gold/5 blur-[120px]" />
-          <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-copper-metal/5 blur-[120px]" />
-        </div>
-
-        <Header
-          isDemo={!isLivePrices}
-          prices={prices}
-          lastUpdated={lastUpdated}
-        />
-        <ToolsDrawer
-          isOpen={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}
-          prices={prices}
-        />
-
-
-
-        <FloatingTools onOpenCalculator={() => setIsDrawerOpen(true)} />
-
-        <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
-          {/* Today's Metal Rates — HERO UI */}
-          <section id="prices" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0s' }}>
-            <MetalPriceCards prices={prices} isLoading={isLoading} />
-          </section>
-
-          {/* Price Trends — Sparkline Charts */}
-          <section id="trends" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.05s' }}>
-            <PriceCharts prices={prices} />
-          </section>
-
-          {/* Calculator & Karat Breakdown */}
-          <section id="calculator" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <GoldCalculator prices={prices} />
-              <KaratChecker prices={prices} />
+      <Routes>
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/*" element={
+          <div className="min-h-screen bg-background relative">
+            {/* Ambient background glows */}
+            <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+              <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-gold/5 blur-[120px]" />
+              <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-copper-metal/5 blur-[120px]" />
             </div>
-          </section>
 
-          {/* Market Signals — Intelligent Insights */}
-          <section id="market-signals" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.15s' }}>
-            <MarketSignals prices={prices} />
-          </section>
-
-          {/* Why Price Changed Today? + Who Should Care */}
-          <section id="intelligence" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <PriceReasonSection
+            <Header
+              isDemo={!isLivePrices}
               prices={prices}
-              news={news}
-              isLoading={isLoading}
+              lastUpdated={lastUpdated}
             />
-          </section>
-
-          {/* Latest Real News */}
-          <section id="news" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.25s' }}>
-            <NewsList
-              news={news}
-              isLoading={isLoading}
-              isDemo={!isLiveMode()}
+            <ToolsDrawer
+              isOpen={isDrawerOpen}
+              onClose={() => setIsDrawerOpen(false)}
+              prices={prices}
             />
-          </section>
-        </main>
 
-        <Footer />
-        <ScrollToTop />
-        <AiPriceBot prices={prices} />
-      </div>
+            <FloatingTools onOpenCalculator={() => setIsDrawerOpen(true)} />
+
+            <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+              {/* Today's Metal Rates — HERO UI */}
+              <section id="prices" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0s' }}>
+                <MetalPriceCards prices={prices} isLoading={isLoading} />
+              </section>
+
+              {/* Price Trends — Sparkline Charts */}
+              <section id="trends" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.05s' }}>
+                <PriceCharts prices={prices} />
+              </section>
+
+              {/* Calculator & Karat Breakdown */}
+              <section id="calculator" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <GoldCalculator prices={prices} />
+                  <KaratChecker prices={prices} />
+                </div>
+              </section>
+
+              {/* Market Signals — Intelligent Insights */}
+              <section id="market-signals" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.15s' }}>
+                <MarketSignals prices={prices} />
+              </section>
+
+              {/* Why Price Changed Today? + Who Should Care */}
+              <section id="intelligence" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+                <PriceReasonSection
+                  prices={prices}
+                  news={news}
+                  isLoading={isLoading}
+                />
+              </section>
+
+              {/* Latest Real News */}
+              <section id="news" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.25s' }}>
+                <NewsList
+                  news={news}
+                  isLoading={isLoading}
+                  isDemo={!isLiveMode()}
+                />
+              </section>
+            </main>
+
+            <Footer />
+            <ScrollToTop />
+            <AiPriceBot prices={prices} />
+          </div>
+        } />
+      </Routes>
     </TooltipProvider>
   );
 };
