@@ -85,21 +85,26 @@ const Header = ({ isDemo, prices, lastUpdated }: HeaderProps) => {
             <Menu className="w-6 h-6" />
           </button>
 
-          <img
-            src="/logo-icon.png"
-            alt="Assetory — Live Gold Rate India Logo"
-            className="w-12 h-12 md:w-14 md:h-14 object-contain filter brightness-110 contrast-105 dark:mix-blend-screen dark:drop-shadow-gold-glow"
-            decoding="async"
-            loading="eager"
-          />
-          <div className="flex flex-col">
-            <h1 className="text-xl md:text-2xl font-display font-bold leading-none text-foreground tracking-tight">
-              <span className="text-gold">GOLD</span>Police
-            </h1>
-            <span className="text-[10px] font-body font-medium text-muted-foreground uppercase tracking-[0.3em] mt-1">
-              Live Commodity Terminal
-            </span>
-          </div>
+          <a 
+            href={isHome ? "#prices" : "/#prices"} 
+            className="flex items-center gap-3 group"
+          >
+            <img
+              src="/logo-icon.png"
+              alt="Assetory — Live Gold Rate India Logo"
+              className="w-12 h-12 md:w-14 md:h-14 object-contain filter brightness-110 contrast-105 dark:mix-blend-screen dark:drop-shadow-gold-glow group-hover:scale-105 transition-transform"
+              decoding="async"
+              loading="eager"
+            />
+            <div className="flex flex-col">
+              <h1 className="text-xl md:text-2xl font-display font-bold leading-none text-foreground tracking-tight group-hover:text-gold transition-colors">
+                <span className="text-gold">GOLD</span>Police
+              </h1>
+              <span className="text-[10px] font-body font-medium text-muted-foreground uppercase tracking-[0.3em] mt-1">
+                Live Commodity Terminal
+              </span>
+            </div>
+          </a>
         </div>
 
         {/* Desktop Navigation (Center) */}

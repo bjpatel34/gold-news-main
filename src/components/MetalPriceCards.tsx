@@ -58,8 +58,20 @@ const PriceCard = ({ metal }: { metal: MetalPrice }) => {
         </div>
         <div className="flex flex-col">
           <div className="flex items-baseline gap-1">
-            <span className={cn("text-2xl font-price font-semibold leading-none mt-1", isGold ? "text-gold-gradient" : "text-foreground")}>₹</span>
-            <div className={cn("text-5xl font-semibold font-price tracking-tight leading-none", isGold ? "text-gold-gradient" : "text-foreground")}>
+            <span className={cn(
+              "text-2xl font-price font-semibold leading-none mt-1",
+              isGold ? "text-gold-gradient" : 
+              metal.id === 'silver' ? "text-silver-gradient" : 
+              metal.id === 'copper' ? "text-copper-gradient" : 
+              "text-foreground"
+            )}>₹</span>
+            <div className={cn(
+              "text-5xl font-semibold font-price tracking-tight leading-none",
+              isGold ? "text-gold-gradient" : 
+              metal.id === 'silver' ? "text-silver-gradient" : 
+              metal.id === 'copper' ? "text-copper-gradient" : 
+              "text-foreground"
+            )}>
               {metal.todayPrice.toLocaleString('en-IN')}
             </div>
           </div>

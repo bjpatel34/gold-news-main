@@ -403,4 +403,25 @@
     border-color: hsl(var(--gold) / 0.4);
     box-shadow: 0 0 0 1px hsl(var(--gold) / 0.08), 0 8px 32px -8px hsl(var(--gold) / 0.12);
   }
+
+  /* Metallic Text Gradients */
+  .text-silver-gradient {
+    background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 45%, #94a3b8 55%, #f8fafc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+
+  .text-copper-gradient {
+    background: linear-gradient(135deg, #fed7aa 0%, #fb923c 45%, #ea580c 55%, #fed7aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
 }
