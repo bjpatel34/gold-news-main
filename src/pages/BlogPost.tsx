@@ -72,7 +72,7 @@ const BlogPost = () => {
               {post.excerpt}
             </p>
 
-            <img src={post.coverImage} alt={post.title} className="w-full h-auto rounded-2xl border border-border shadow-sm mb-12" />
+            <img src={post.coverImage} alt={post.title} decoding="async" loading="eager" className="w-full h-auto rounded-2xl border border-border shadow-sm mb-12" />
           </div>
 
           {/* Article content */}
@@ -130,7 +130,7 @@ const BlogPost = () => {
                   className="group bg-card border border-border rounded-xl overflow-hidden hover:border-gold/40 hover:shadow-md transition-all duration-300 flex flex-col"
                 >
                   <div className="h-32 w-full overflow-hidden border-b border-border">
-                    <img src={rel.coverImage} alt={rel.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <img src={rel.coverImage} alt={rel.title} decoding="async" loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-4 flex-1 flex flex-col justify-between">
                     <div>

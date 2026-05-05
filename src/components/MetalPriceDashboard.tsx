@@ -25,6 +25,8 @@ import {
   ArrowUpRight,
   ArrowDownRight,
   Activity,
+  Coins,
+  CircleDashed
 } from "lucide-react";
 
 // ---------------------------------------------------------
@@ -173,21 +175,21 @@ const MetalBadge = ({
 }: {
   metal: string;
 }) => {
-  const config: Record<string, { emoji: string; bg: string; border: string }> =
+  const config: Record<string, { icon: React.ReactNode; bg: string; border: string }> =
     {
       gold: {
-        emoji: "🥇",
+        icon: <Coins className="w-8 h-8 text-gold" />,
         bg: "bg-gold/10",
         border: "border-gold/30",
       },
       silver: {
-        emoji: "🥈",
+        icon: <CircleDashed className="w-8 h-8 text-slate-300" />,
         bg: "bg-silver/10",
         border: "border-silver/30",
       },
     };
   const c = config[metal] ?? {
-    emoji: "💰",
+    icon: <Coins className="w-8 h-8 text-muted-foreground" />,
     bg: "bg-muted",
     border: "border-border",
   };
@@ -200,7 +202,7 @@ const MetalBadge = ({
         c.border
       )}
     >
-      {c.emoji}
+      {c.icon}
     </div>
   );
 };
@@ -227,7 +229,7 @@ const PriceCard = ({ metal }: { metal: MetalPrice }) => {
     <div
       className={cn(
         "group relative rounded-2xl border bg-card overflow-hidden card-gold-hover",
-        "transition-all duration-500 ease-out",
+        "transition-[transform,box-shadow,border-color] duration-500 ease-out",
         "hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20",
         "hover:scale-[1.015]",
         borders[metal.id] ?? "border-border"

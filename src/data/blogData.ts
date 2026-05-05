@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2026-05-01',
     readTime: 6,
     featured: true,
-    coverEmoji: '🥇',
+    coverEmoji: '',
     coverImage: '/images/blog/why-gold-price-rises.png',
     metaTitle: 'Why Does Gold Price Rise in India? 7 Key Factors — GoldPolice',
     metaDescription: 'Learn why gold prices rise and fall in India. Understand the 7 key factors — US dollar, inflation, RBI policy, import duty, wedding demand, global tensions and ETF flows.',
@@ -142,7 +142,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2026-04-25',
     readTime: 7,
     featured: true,
-    coverEmoji: '🥈',
+    coverEmoji: '',
     coverImage: '/images/blog/silver-price.png',
     metaTitle: 'Silver Price India — Why It Moves & When to Buy | GoldPolice',
     metaDescription: 'Learn why silver prices in India are more volatile than gold. Understand industrial demand, Gold-Silver ratio, solar panel boom and when to invest in silver.',
@@ -199,7 +199,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2026-04-20',
     readTime: 5,
     featured: false,
-    coverEmoji: '🥉',
+    coverEmoji: '',
     coverImage: '/images/blog/copper-economy.png',
     metaTitle: 'Copper Price India — Dr. Copper Economic Indicator | GoldPolice',
     metaDescription: 'Learn why copper price predicts the economy. Understand MCX copper rates, India copper demand from EVs and infrastructure, and how to read copper price signals.',
@@ -350,11 +350,11 @@ export const blogPosts: BlogPost[] = [
 
       <h2>Red Flags — How to Avoid Being Cheated</h2>
       <ul>
-        <li>Jeweller refuses to give making charges as a percentage ❌</li>
-        <li>No BIS hallmark on the jewellery ❌</li>
-        <li>Gold rate shown is significantly higher than MCX or GoldPolice rate ❌</li>
-        <li>Jeweller claims "special gold" that justifies a higher rate ❌</li>
-        <li>No written receipt with breakdown of metal value + making charges + GST ❌</li>
+        <li>Jeweller refuses to give making charges as a percentage <span class="text-destructive font-bold">[!]</span></li>
+        <li>No BIS hallmark on the jewellery <span class="text-destructive font-bold">[!]</span></li>
+        <li>Gold rate shown is significantly higher than MCX or GoldPolice rate <span class="text-destructive font-bold">[!]</span></li>
+        <li>Jeweller claims "special gold" that justifies a higher rate <span class="text-destructive font-bold">[!]</span></li>
+        <li>No written receipt with breakdown of metal value + making charges + GST <span class="text-destructive font-bold">[!]</span></li>
       </ul>
 
       <p><em>Disclaimer: Gold rates vary by location. Always verify current rates on GoldPolice before visiting a jeweller.</em></p>
@@ -363,9 +363,9 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const blogCategories = [
-  { id: 'all', label: 'All Articles', emoji: '📚' },
-  { id: 'gold', label: 'Gold', emoji: '🥇' },
-  { id: 'silver', label: 'Silver', emoji: '🥈' },
-  { id: 'copper', label: 'Copper', emoji: '🥉' },
-  { id: 'general', label: 'Market Guide', emoji: '📊' },
+  { id: 'all', label: 'All Articles', icon: 'Library' },
+  { id: 'gold', label: 'Gold', icon: 'Coins' },
+  { id: 'silver', label: 'Silver', icon: 'CircleDashed' },
+  { id: 'copper', label: 'Copper', icon: 'Box' },
+  { id: 'general', label: 'Market Guide', icon: 'BarChart3' },
 ];

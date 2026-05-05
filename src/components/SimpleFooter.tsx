@@ -1,4 +1,4 @@
-import { Activity } from 'lucide-react';
+import { Activity, BookOpen } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -20,6 +20,8 @@ const Footer = () => {
                 src="/logo-icon.png"
                 alt="GoldPolice icon"
                 className="w-10 h-10 object-contain drop-shadow-gold-glow mix-blend-screen"
+                decoding="async"
+                loading="lazy"
               />
               <span className="text-xl font-display font-bold text-foreground tracking-tight">
                 <span className="text-gold">GOLD</span>Police
@@ -47,9 +49,9 @@ const Footer = () => {
             <nav className="flex flex-col gap-2.5">
               <Link
                 to="/blog"
-                className="text-sm text-foreground hover:text-gold transition-colors block"
+                className="text-sm text-foreground hover:text-gold transition-colors flex items-center gap-2"
               >
-                📚 Market Guide
+                <BookOpen className="w-4 h-4" /> Market Guide
               </Link>
               <Link
                 to="/blog/why-gold-price-rises-india"

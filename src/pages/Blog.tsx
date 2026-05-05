@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, ArrowRight, BookOpen, TrendingUp } from 'lucide-react';
+import { Clock, ArrowRight, BookOpen, TrendingUp, Search, Library, Coins, CircleDashed, Box, BarChart3 } from 'lucide-react';
 import { blogPosts, blogCategories, BlogPost } from '@/data/blogData';
 import Header from '@/components/Header';
 import Footer from '@/components/SimpleFooter';
@@ -11,6 +11,17 @@ const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'book'>('book');
+
+  const getCategoryIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'Library': return <Library className="w-4 h-4 mr-1.5 inline-block" />;
+      case 'Coins': return <Coins className="w-4 h-4 mr-1.5 inline-block" />;
+      case 'CircleDashed': return <CircleDashed className="w-4 h-4 mr-1.5 inline-block" />;
+      case 'Box': return <Box className="w-4 h-4 mr-1.5 inline-block" />;
+      case 'BarChart3': return <BarChart3 className="w-4 h-4 mr-1.5 inline-block" />;
+      default: return null;
+    }
+  };
 
   // Update page title for SEO
   useEffect(() => {
@@ -65,7 +76,9 @@ const Blog = () => {
               onChange={e => setSearchQuery(e.target.value)}
               className="w-full bg-card border border-border rounded-xl px-4 py-3 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold/50"
             />
-            <span className="absolute right-3 top-3 text-muted-foreground text-lg">🔍</span>
+            <span className="absolute right-3 top-3 text-muted-foreground text-lg">
+              <Search className="w-5 h-5 opacity-50" />
+            </span>
           </div>
 
           {/* View Toggle */}
@@ -99,7 +112,8 @@ const Blog = () => {
                   : 'bg-card text-muted-foreground border-border hover:border-gold/50 hover:text-foreground'
               }`}
             >
-              {cat.emoji} {cat.label}
+              {getCategoryIcon(cat.icon)}
+              {cat.label}
             </button>
           ))}
           <span className="ml-auto text-xs text-muted-foreground">{filtered.length} articles</span>
@@ -107,7 +121,9 @@ const Blog = () => {
 
         {filtered.length === 0 ? (
           <div className="text-center py-16">
-            <div className="text-5xl mb-4">🔍</div>
+            <div className="flex justify-center mb-6 text-muted-foreground/30">
+              <Search className="w-16 h-16" />
+            </div>
             <p className="text-muted-foreground">No articles found. Try a different search or category.</p>
           </div>
         ) : viewMode === 'book' ? (

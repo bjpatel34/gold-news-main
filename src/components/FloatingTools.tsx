@@ -40,30 +40,30 @@ const FloatingTools = ({ onOpenCalculator }: FloatingToolsProps) => {
   }, [isOpen]);
 
   const menuItems = [
-    { 
-      icon: <Calculator className="w-5 h-5" />, 
-      label: 'Calculator', 
+    {
+      icon: <Calculator className="w-5 h-5" />,
+      label: 'Calculator',
       onClick: () => { onOpenCalculator(); setIsOpen(false); },
       color: 'bg-gold text-background',
       style: { transitionDelay: '0ms' }
     },
-    { 
-      icon: <Zap className="w-5 h-5" />, 
-      label: 'Signals', 
+    {
+      icon: <Zap className="w-5 h-5" />,
+      label: 'Signals',
       onClick: () => scrollToSection('market-signals'),
       color: 'bg-chart-up text-background',
       style: { transitionDelay: '50ms' }
     },
-    { 
-      icon: <BrainCircuit className="w-5 h-5" />, 
-      label: 'Intelligence', 
+    {
+      icon: <BrainCircuit className="w-5 h-5" />,
+      label: 'Intelligence',
       onClick: () => scrollToSection('intelligence'),
       color: 'bg-chart-down text-background',
       style: { transitionDelay: '100ms' }
     },
-    { 
-      icon: isShared ? <Check className="w-5 h-5" /> : <Share2 className="w-5 h-5" />, 
-      label: 'Share', 
+    {
+      icon: isShared ? <Check className="w-5 h-5" /> : <Share2 className="w-5 h-5" />,
+      label: 'Share',
       onClick: handleShare,
       color: 'bg-blue-500 text-white',
       style: { transitionDelay: '150ms' }

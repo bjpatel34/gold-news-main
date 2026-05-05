@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, Search, X, AlertCircle, Newspaper } from 'lucide-react';
+import { ExternalLink, Search, X, AlertCircle, Newspaper, Coins, CircleDashed, Box } from 'lucide-react';
 import { NewsItem } from '@/data/mockData';
 import { formatTimeAgo } from '@/utils/priceReason';
 import { cn } from '@/lib/utils';
@@ -21,12 +21,12 @@ const getMetalBadgeStyle = (metal: string) => {
   }
 };
 
-const getMetalEmoji = (metal: string) => {
+const getMetalIcon = (metal: string) => {
   switch (metal.toLowerCase()) {
-    case 'gold': return '🥇';
-    case 'silver': return '🥈';
-    case 'copper': return '🥉';
-    default: return '📰';
+    case 'gold': return <Coins className="w-10 h-10 opacity-80" />;
+    case 'silver': return <CircleDashed className="w-10 h-10 opacity-80" />;
+    case 'copper': return <Box className="w-10 h-10 opacity-80" />;
+    default: return <Newspaper className="w-10 h-10 opacity-80" />;
   }
 };
 
@@ -41,8 +41,8 @@ const getMetalGradient = (metal: string) => {
 
 const FeaturedCard = ({ item }: { item: NewsItem }) => (
   <article className="group relative flex flex-col md:flex-row gap-6 p-6 rounded-2xl border border-border bg-card card-elevated gold-ring-hover overflow-hidden">
-    <div className={cn("hidden md:flex shrink-0 w-[100px] h-[100px] rounded-xl items-center justify-center text-4xl", getMetalGradient(item.metal))}>
-      {getMetalEmoji(item.metal)}
+    <div className={cn("hidden md:flex shrink-0 w-[100px] h-[100px] rounded-xl items-center justify-center text-foreground", getMetalGradient(item.metal))}>
+      {getMetalIcon(item.metal)}
     </div>
     <div className="flex-1 space-y-3">
       <div className="flex items-center gap-3">

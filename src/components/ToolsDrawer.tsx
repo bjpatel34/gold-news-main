@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { X, ChevronRight, Calculator, TrendingUp, Scale, ArrowLeftRight, Gem, LucideIcon } from 'lucide-react';
+import { X, ChevronRight, Calculator, TrendingUp, Scale, ArrowLeftRight, Gem, LucideIcon, Coins, CircleDashed } from 'lucide-react';
 import { MetalPrice } from '@/data/mockData';
 import { cn } from '@/lib/utils';
 
@@ -91,6 +91,8 @@ const ToolsDrawer = ({ isOpen, onClose, prices }: ToolsDrawerProps) => {
               src="/logo-icon.png"
               alt="GoldPolice icon"
               className="w-10 h-10 object-contain drop-shadow-gold-glow mix-blend-screen"
+              decoding="async"
+              loading="lazy"
             />
             <div>
               <h2 className="text-lg font-display font-bold text-foreground leading-none">
@@ -122,8 +124,8 @@ const ToolsDrawer = ({ isOpen, onClose, prices }: ToolsDrawerProps) => {
             <div className="space-y-4">
               <div className="space-y-2"><div className="flex justify-between text-[10px] uppercase tracking-widest text-muted-foreground font-semibold"><span>Budget</span><span className="font-price text-gold">₹{budget.toLocaleString('en-IN')}</span></div><input type="range" min={5000} max={500000} step={5000} value={budget} onChange={e => setBudget(Number(e.target.value))} className="w-full accent-gold" /></div>
               <div className="space-y-2">
-                <div className="flex justify-between items-center p-3 rounded-xl bg-card border border-border/50"><div><div className="text-[10px] text-muted-foreground uppercase font-semibold">Gold</div><div className="text-sm font-price font-bold text-gold">{gramsYouGet.toFixed(2)}g</div></div><span className="text-xl">🥇</span></div>
-                <div className="flex justify-between items-center p-3 rounded-xl bg-card border border-border/50"><div><div className="text-[10px] text-muted-foreground uppercase font-semibold">Silver</div><div className="text-sm font-price font-bold text-foreground">{silverYouGet.toFixed(3)}kg</div></div><span className="text-xl">🥈</span></div>
+                <div className="flex justify-between items-center p-3 rounded-xl bg-card border border-border/50"><div><div className="text-[10px] text-muted-foreground uppercase font-semibold">Gold</div><div className="text-sm font-price font-bold text-gold">{gramsYouGet.toFixed(2)}g</div></div><Coins className="w-6 h-6 text-gold opacity-80" /></div>
+                <div className="flex justify-between items-center p-3 rounded-xl bg-card border border-border/50"><div><div className="text-[10px] text-muted-foreground uppercase font-semibold">Silver</div><div className="text-sm font-price font-bold text-foreground">{silverYouGet.toFixed(3)}kg</div></div><CircleDashed className="w-6 h-6 text-slate-300 opacity-80" /></div>
               </div>
             </div>
           </Section>
