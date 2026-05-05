@@ -19,7 +19,7 @@ const Footer = () => {
               <img
                 src="/logo-icon.png"
                 alt="GoldPolice icon"
-                className="w-10 h-10 object-contain drop-shadow-gold-glow mix-blend-screen"
+                className="w-10 h-10 object-contain filter brightness-110 contrast-105 dark:mix-blend-screen dark:drop-shadow-gold-glow"
                 decoding="async"
                 loading="lazy"
               />
