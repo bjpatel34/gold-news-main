@@ -31,7 +31,7 @@ const MarketSignals = ({ prices }: { prices: MetalPrice[] }) => {
   return (
     <section className="py-8" id="market-signals">
       <div className="flex items-center gap-5 mb-8">
-        <h2 className="text-3xl font-display font-semibold text-foreground whitespace-nowrap">Market Signals</h2>
+        <h2 className="text-3xl font-display font-semibold text-foreground whitespace-nowrap">Gold Market Signals & Buy Analysis India</h2>
         <div className="h-px w-full divider-gold hidden sm:block" />
       </div>
 

@@ -107,7 +107,7 @@ const PriceCharts = ({ prices }: PriceChartsProps) => {
   return (
     <section className="py-8" id="price-trends">
       <div className="flex items-center gap-5 mb-8">
-        <h2 className="text-3xl font-display font-semibold text-foreground whitespace-nowrap">Market Trends</h2>
+        <h2 className="text-3xl font-display font-semibold text-foreground whitespace-nowrap">Gold & Silver Price Trend Chart India</h2>
         <div className="h-px w-full divider-gold hidden sm:block" />
       </div>
 

@@ -87,7 +87,7 @@ const Header = ({ isDemo, prices, lastUpdated }: HeaderProps) => {
 
           <img
             src="/logo-icon.png"
-            alt="GoldPolice icon"
+            alt="Assetory — Live Gold Rate India Logo"
             className="w-12 h-12 md:w-14 md:h-14 object-contain filter brightness-110 contrast-105 dark:mix-blend-screen dark:drop-shadow-gold-glow"
             decoding="async"
             loading="eager"

@@ -79,7 +79,48 @@ const Footer = () => {
               </Link>
             </nav>
           </div>
+        </div>
 
+        <div className="border-t border-border pt-8 mt-8">
+          <div className="max-w-4xl mx-auto px-4">
+            <h3 className="text-sm font-semibold text-foreground mb-3">
+              Live Gold Rate in India — About Assetory
+            </h3>
+
+            <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+              Assetory provides live gold rate in India updated every 25 minutes
+              from international spot markets, MCX (Multi Commodity Exchange) and
+              IBJA (India Bullion and Jewellers Association). Today's 24K gold rate
+              reflects the international price converted to Indian Rupees (INR)
+              including 6% customs duty and 3% GST. Gold rates vary slightly between
+              cities like Mumbai, Delhi, Chennai, Bangalore, Ahmedabad, Surat, Jaipur,
+              Kolkata, Hyderabad, Kochi and Patna due to local taxes and demand.
+            </p>
+
+            <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+              Silver price in India is quoted per kilogram and updated in real-time.
+              Our free gold rate calculator helps you find the exact value of gold by
+              weight — including making charges (5-25%) and 3% GST — for 24K, 22K,
+              18K and 14K gold. The Gold/Silver ratio gauge helps investors decide
+              when to switch between the two metals for maximum returns.
+            </p>
+
+            <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+              Popular searches: gold rate today india · sona ka bhav aaj ·
+              22k gold rate today · silver price per kg india ·
+              gold calculator with making charges · mcx gold rate today ·
+              chandi ka bhav · copper price india · gold rate ahmedabad ·
+              gold rate surat · gold rate mumbai · gold rate delhi ·
+              gold rate chennai · ibja gold rate today
+            </p>
+
+            <p className="text-[10px] text-muted-foreground/50 italic">
+              Disclaimer: All prices shown are indicative and sourced from Gold-API.com
+              with live USD-INR conversion via open.er-api.com. Actual prices may vary
+              at your local jeweller. Not financial advice. For accurate rates contact
+              your nearest IBJA-registered jeweller or check MCX directly.
+            </p>
+          </div>
         </div>
 
         {/* Bottom Bar */}

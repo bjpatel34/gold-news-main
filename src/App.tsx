@@ -26,9 +26,11 @@ import { fetchLivePrices, isGoldApiConfigured } from '@/lib/goldApi';
 import { fetchCommodityNews, isNewsdataConfigured } from '@/lib/newsApi';
 import { mockPrices, mockNews, NewsItem, MetalPrice } from '@/data/mockData';
 import { isLiveMode } from '@/utils/priceReason';
+import { useSeoTitle } from '@/hooks/useSeoTitle';
 
 const App = () => {
   const [prices, setPrices] = useState<MetalPrice[]>(mockPrices);
+  useSeoTitle(prices);
   const [news, setNews] = useState<NewsItem[]>(mockNews);
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<number | null>(null);

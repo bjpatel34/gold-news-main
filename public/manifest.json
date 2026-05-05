@@ -1,0 +1,44 @@
+{
+"name": "Assetory — Live Gold Rate India",
+"short_name": "Gold Rate",
+"description": "Live gold rate in India. Real-time 24K 22K gold price per 10 grams, silver rate per kg, karat calculator and market signals. Updated every 25 minutes.",
+"start_url": "/",
+"scope": "/",
+"display": "standalone",
+"background_color": "#1a0e00",
+"theme_color": "#D4A832",
+"orientation": "portrait-primary",
+"lang": "en-IN",
+"dir": "ltr",
+"categories": ["finance", "utilities"],
+"icons": [
+{
+"src": "/logo.png",
+"sizes": "192x192",
+"type": "image/png",
+"purpose": "any maskable"
+},
+{
+"src": "/logo.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "any"
+}
+],
+"shortcuts": [
+{
+"name": "Live Gold Rate",
+"short_name": "Gold Rate",
+"description": "Check today's live gold rate in India",
+"url": "/#prices",
+"icons": [{ "src": "/logo.png", "sizes": "96x96" }]
+},
+{
+"name": "Gold Calculator",
+"short_name": "Calculator",
+"description": "Calculate gold value with making charges",
+"url": "/#calculator",
+"icons": [{ "src": "/logo.png", "sizes": "96x96" }]
+}
+]
+}

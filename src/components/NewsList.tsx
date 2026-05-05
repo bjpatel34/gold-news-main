@@ -95,7 +95,7 @@ const NewsList = ({ news, isLoading, isDemo }: NewsListProps) => {
       <div className="flex flex-col gap-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-2">
-            <h2 className="text-2xl font-display font-normal text-foreground tracking-tight">Market Intelligence</h2>
+            <h2 className="text-2xl font-display font-normal text-foreground tracking-tight">Gold & Silver Market News India Today</h2>
             <div className="divider-gold w-24" />
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">

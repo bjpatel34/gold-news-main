@@ -95,7 +95,12 @@ const MetalPriceCards = ({ prices, isLoading }: PriceCardsProps) => (
   <section className="py-8" id="todays-rates">
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
       <div className="flex items-center gap-5 flex-1">
-        <h2 className="text-3xl font-display font-semibold text-foreground whitespace-nowrap">Today's Rates</h2>
+        <div>
+          <h1 className="text-3xl font-display font-semibold text-foreground whitespace-nowrap">Gold Rate Today in India</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Live 24K gold price per 10g · Silver rate per kg · Copper price — updated every 25 minutes from MCX & IBJA
+          </p>
+        </div>
         <div className="h-px w-full divider-gold hidden sm:block" />
       </div>
 

@@ -28,7 +28,7 @@ const KaratChecker = ({ prices }: { prices: MetalPrice[] }) => {
       <div className="p-5 border-b border-border/50 flex items-center justify-between bg-muted/20">
         <div className="flex items-center gap-2.5">
           <Gem className="w-5 h-5 text-gold" />
-          <h2 className="text-xl font-display font-semibold text-foreground">Purity Guide</h2>
+          <h2 className="text-xl font-display font-semibold text-foreground">24K 22K 18K Gold Rate Per Gram India Today</h2>
         </div>
       </div>
 

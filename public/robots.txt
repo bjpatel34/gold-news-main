@@ -1,14 +1,17 @@
+User-agent: *
+Allow: /
+
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 2
 
-User-agent: Twitterbot
-Allow: /
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /src/
+Disallow: /dist/
 
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
-Allow: /
+Sitemap: https://goldrate.assetory.in/sitemap.xml
