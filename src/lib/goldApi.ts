@@ -46,8 +46,9 @@ const GOLD_INDIA_FACTOR   = 1.085;
 const SILVER_INDIA_FACTOR = 1.135;
 const COPPER_INDIA_FACTOR = 1.02;  // minor MCX premium
 
-// localStorage key for storing previous prices (used to compute change)
-const STORAGE_KEY     = 'goldapi_prev_prices';
+// localStorage keys
+const LAST_PRICES_KEY = 'goldapi_last_prices';
+const DAY_OPEN_KEY    = 'goldapi_day_open_prices';
 
 // ── Type for raw API response ──────────────────────────────────────────
 interface GoldApiResponse {
@@ -155,86 +156,69 @@ export function isGoldApiConfigured(): boolean {
 
 // ── Main export: fetch all metal prices ───────────────────────────────
 export async function fetchLivePrices(): Promise<MetalPrice[]> {
-  // Fetch live currency rate + all metal prices simultaneously
-  // All 4 fire in parallel — no extra time cost
   const [usdInr, goldData, silverData, copperData] = await Promise.all([
-    fetchUSDtoINR(),     // live USD→INR rate from ECB via frankfurter.app
-    fetchSymbol('XAU'),  // Gold   — USD per troy oz
-    fetchSymbol('XAG'),  // Silver — USD per troy oz
-    fetchSymbol('HG'),   // Copper — USD per pound
+    fetchUSDtoINR(),
+    fetchSymbol('XAU'),
+    fetchSymbol('XAG'),
+    fetchSymbol('HG'),
   ]);
 
-  // Gold: USD/toz → INR/toz → INR/g → INR/10g × India factor
-  const goldPer10g = Math.round(
-    (goldData.price / TROY_OZ_TO_G) * 10 * usdInr * GOLD_INDIA_FACTOR
-  );
-
-  // Silver: USD/toz → INR/toz → INR/g → INR/kg × India factor
-  const silverPerKg = Math.round(
-    (silverData.price / TROY_OZ_TO_G) * 1000 * usdInr * SILVER_INDIA_FACTOR
-  );
-
-  // Copper: USD/lb → INR/kg × minor MCX premium
-  const copperPerKg = Math.round(
-    (copperData.price / LB_TO_KG) * usdInr * COPPER_INDIA_FACTOR
-  );
-
-  console.info(
-    `💱 Live rates fetched | USD→INR: ₹${usdInr.toFixed(2)} | ` +
-    `Gold: ₹${goldPer10g.toLocaleString('en-IN')}/10g | ` +
-    `Silver: ₹${silverPerKg.toLocaleString('en-IN')}/kg | ` +
-    `Copper: ₹${copperPerKg.toLocaleString('en-IN')}/kg`
-  );
+  const goldPer10g  = Math.round((goldData.price / TROY_OZ_TO_G) * 10 * usdInr * GOLD_INDIA_FACTOR);
+  const silverPerKg = Math.round((silverData.price / TROY_OZ_TO_G) * 1000 * usdInr * SILVER_INDIA_FACTOR);
+  const copperPerKg = Math.round((copperData.price / LB_TO_KG) * usdInr * COPPER_INDIA_FACTOR);
 
   const timestamp = new Date().toISOString();
+  const todayPrices = { gold: goldPer10g, silver: silverPerKg, copper: copperPerKg };
 
-  // ── Load previous prices from localStorage ────────────────────────
-  // Used to compute today's change amount and change %
-  let prev: Record<string, number> = {
-    gold:   goldPer10g,
-    silver: silverPerKg,
-    copper: copperPerKg,
-  };
-
+  // 1. Load Last Prices (for the pill)
+  let last: Record<string, number> = todayPrices;
   try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      // Validate stored data has all keys
-      if (parsed.gold && parsed.silver && parsed.copper) {
-        prev = parsed;
-      }
+    const storedLast = localStorage.getItem(LAST_PRICES_KEY);
+    if (storedLast) last = JSON.parse(storedLast);
+  } catch (_) {}
+
+  // 2. Load Day Open Prices (for the 24h change)
+  let dayOpen: Record<string, number> = todayPrices;
+  let lastDayUpdate = 0;
+  try {
+    const storedDay = localStorage.getItem(DAY_OPEN_KEY);
+    if (storedDay) {
+      const parsed = JSON.parse(storedDay);
+      dayOpen = parsed.prices;
+      lastDayUpdate = parsed.timestamp;
     }
-  } catch (_) {
-    // localStorage not available or corrupt — use today's price as baseline
+  } catch (_) {}
+
+  // Check if we need to reset the Day Open (if last update was > 20 hours ago or different calendar day)
+  const now = Date.now();
+  const isDifferentDay = new Date(lastDayUpdate).getDate() !== new Date(now).getDate();
+  const isOver20Hours = (now - lastDayUpdate) > 20 * 60 * 60 * 1000;
+
+  if (!lastDayUpdate || isDifferentDay || isOver20Hours) {
+    console.info("🌅 Resetting Day Open prices for the new session");
+    dayOpen = todayPrices;
+    localStorage.setItem(DAY_OPEN_KEY, JSON.stringify({ prices: todayPrices, timestamp: now }));
   }
 
   // ── Build MetalPrice objects ───────────────────────────────────────
-  function buildMetal(
-    id:           string,
-    name:         string,
-    nameHindi:    string,
-    symbol:       string,
-    todayPrice:   number,
-    unit:         string,
-  ): MetalPrice {
-    const yesterdayPrice  = prev[id] ?? todayPrice;
-    const change          = todayPrice - yesterdayPrice;
-    const changePercent   = yesterdayPrice !== 0
-      ? Number(((change / yesterdayPrice) * 100).toFixed(2))
-      : 0;
+  function buildMetal(id: string, name: string, nameHindi: string, symbol: string, todayPrice: number, unit: string): MetalPrice {
+    const lastPrice     = last[id]    ?? todayPrice;
+    const openPrice     = dayOpen[id] ?? todayPrice;
+
+    // Recent change (since last fetch)
+    const change        = todayPrice - lastPrice;
+    const changePercent = lastPrice !== 0 ? Number(((change / lastPrice) * 100).toFixed(2)) : 0;
+
+    // Daily change (24h baseline)
+    const dailyChange   = todayPrice - openPrice;
+    const dailyChangePercent = openPrice !== 0 ? Number(((dailyChange / openPrice) * 100).toFixed(2)) : 0;
 
     return {
-      id,
-      name,
-      nameHindi,
-      symbol,
-      todayPrice,
-      yesterdayPrice,
-      change,
-      changePercent,
-      unit,
-      updated: timestamp,
+      id, name, nameHindi, symbol, todayPrice,
+      yesterdayPrice: openPrice,
+      change, changePercent,
+      dailyChange, dailyChangePercent,
+      unit, updated: timestamp,
     };
   }
 
@@ -244,16 +228,8 @@ export async function fetchLivePrices(): Promise<MetalPrice[]> {
     buildMetal('copper', 'Copper', 'तांबा', 'HG',  copperPerKg, 'per kg'),
   ];
 
-  // ── Persist today's prices as tomorrow's "previous" ───────────────
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      gold:   goldPer10g,
-      silver: silverPerKg,
-      copper: copperPerKg,
-    }));
-  } catch (_) {
-    // Ignore localStorage errors
-  }
+  // Persist "Last" prices for the next fetch
+  localStorage.setItem(LAST_PRICES_KEY, JSON.stringify(todayPrices));
 
   return prices;
 }

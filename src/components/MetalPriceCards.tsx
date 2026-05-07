@@ -60,17 +60,17 @@ const PriceCard = ({ metal }: { metal: MetalPrice }) => {
           <div className="flex items-baseline gap-1">
             <span className={cn(
               "text-2xl font-price font-semibold leading-none mt-1",
-              isGold ? "text-gold-gradient" : 
-              metal.id === 'silver' ? "text-silver-gradient" : 
-              metal.id === 'copper' ? "text-copper-gradient" : 
-              "text-foreground"
+              isGold ? "text-gold-gradient" :
+                metal.id === 'silver' ? "text-silver-gradient" :
+                  metal.id === 'copper' ? "text-copper-gradient" :
+                    "text-foreground"
             )}>₹</span>
             <div className={cn(
               "text-5xl font-semibold font-price tracking-tight leading-none",
-              isGold ? "text-gold-gradient" : 
-              metal.id === 'silver' ? "text-silver-gradient" : 
-              metal.id === 'copper' ? "text-copper-gradient" : 
-              "text-foreground"
+              isGold ? "text-gold-gradient" :
+                metal.id === 'silver' ? "text-silver-gradient" :
+                  metal.id === 'copper' ? "text-copper-gradient" :
+                    "text-foreground"
             )}>
               {metal.todayPrice.toLocaleString('en-IN')}
             </div>
@@ -79,19 +79,32 @@ const PriceCard = ({ metal }: { metal: MetalPrice }) => {
             per {metal.id === 'gold' ? '10 grams (24K)' : 'kilogram'}
           </div>
         </div>
-        <div className={cn(
-          "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-price text-sm font-bold",
-          isUp && "bg-chart-up/20 text-chart-up border border-chart-up/30",
-          isDown && "bg-chart-down/20 text-chart-down border border-chart-down/30",
-          !isUp && !isDown && "bg-muted text-foreground border border-border",
-        )}>
-          <TrendIcon className="w-3 h-3" aria-label={isUp ? 'Price increased' : isDown ? 'Price decreased' : 'Price unchanged'} />
-          <span>{formatChange(metal.change)}</span>
-          <span className="opacity-60">({formatPercent(metal.changePercent)})</span>
+        <div className="flex items-center justify-between">
+          <div className={cn(
+            "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-price text-sm font-bold",
+            isUp && "bg-chart-up/20 text-chart-up border border-chart-up/30",
+            isDown && "bg-chart-down/20 text-chart-down border border-chart-down/30",
+            !isUp && !isDown && "bg-muted text-foreground border border-border",
+          )}>
+            <TrendIcon className="w-3 h-3" aria-label={isUp ? 'Price increased' : isDown ? 'Price decreased' : 'Price unchanged'} />
+            <span>{formatChange(metal.change)}</span>
+            <span className="opacity-60">({formatPercent(metal.changePercent)})</span>
+          </div>
+
+          <div className="text-right">
+            <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mb-0.5">Day Change</div>
+            <div className={cn(
+              "text-sm font-price font-bold",
+              metal.dailyChange > 0 ? "text-chart-up" : metal.dailyChange < 0 ? "text-chart-down" : "text-foreground"
+            )}>
+              {metal.dailyChange > 0 ? '+' : ''}{formatINR(Math.abs(metal.dailyChange))}
+              <span className="opacity-60 ml-1">({formatPercent(metal.dailyChangePercent)})</span>
+            </div>
+          </div>
         </div>
         <div className="pt-4 border-t border-border/50 flex items-center justify-between">
           <div className="text-xs font-body text-foreground/80 font-medium">
-            vs yesterday <span className="font-price font-bold text-foreground">{formatINR(metal.yesterdayPrice)}</span>
+            vs Previous close <span className="font-price font-bold text-foreground">{formatINR(metal.yesterdayPrice)}</span>
           </div>
           <div className="flex items-center gap-1 text-[11px] font-body text-muted-foreground/60">
             <Clock className="w-3 h-3" />

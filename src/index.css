@@ -259,6 +259,7 @@
       opacity: 0;
       transform: translateY(12px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -341,12 +342,10 @@
   .shimmer::after {
     content: "";
     @apply absolute inset-0;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--secondary) / 0.5) 50%,
-      transparent
-    );
+    background: linear-gradient(90deg,
+        transparent,
+        hsl(var(--secondary) / 0.5) 50%,
+        transparent);
     transform: translateX(-100%);
     animation: shimmer-slide 2s infinite ease-in-out;
     will-change: transform;
@@ -412,7 +411,7 @@
     background-clip: text;
     color: transparent;
     display: inline-block;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   }
 
   .text-copper-gradient {
@@ -422,6 +421,6 @@
     background-clip: text;
     color: transparent;
     display: inline-block;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   }
 }

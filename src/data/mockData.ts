@@ -10,9 +10,11 @@ export interface MetalPrice {
   nameHindi: string;
   symbol: string;
   todayPrice: number;       // Price per 10 grams for Gold/Silver, per kg for Copper
-  yesterdayPrice: number;
-  change: number;
-  changePercent: number;
+  yesterdayPrice: number;   // 24h baseline
+  change: number;           // Recent move (since last fetch)
+  changePercent: number;    // Recent move %
+  dailyChange: number;      // True 24h move
+  dailyChangePercent: number; // True 24h move %
   unit: string;
   updated: string;
 }
@@ -42,6 +44,8 @@ export const mockPrices: MetalPrice[] = [
     yesterdayPrice: 71980,
     change: 470,
     changePercent: 0.65,
+    dailyChange: 470,
+    dailyChangePercent: 0.65,
     unit: '10 grams (24K)',
     updated: today,
   },
@@ -54,6 +58,8 @@ export const mockPrices: MetalPrice[] = [
     yesterdayPrice: 88200,
     change: 1300,
     changePercent: 1.47,
+    dailyChange: 1300,
+    dailyChangePercent: 1.47,
     unit: 'per kg',
     updated: today,
   },
@@ -66,6 +72,8 @@ export const mockPrices: MetalPrice[] = [
     yesterdayPrice: 830,
     change: -5,
     changePercent: -0.60,
+    dailyChange: -5,
+    dailyChangePercent: -0.60,
     unit: 'per kg',
     updated: today,
   },

@@ -186,6 +186,7 @@ const App = () => {
                 <MarketSignals prices={prices} />
               </section>
 
+
               {/* Why Price Changed Today? + Who Should Care */}
               <section id="intelligence" className="scroll-mt-24 animate-fade-up" style={{ animationDelay: '0.2s' }}>
                 <PriceReasonSection

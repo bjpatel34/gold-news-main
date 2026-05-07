@@ -176,18 +176,18 @@ const MetalBadge = ({
   metal: string;
 }) => {
   const config: Record<string, { icon: React.ReactNode; bg: string; border: string }> =
-    {
-      gold: {
-        icon: <Coins className="w-8 h-8 text-gold" />,
-        bg: "bg-gold/10",
-        border: "border-gold/30",
-      },
-      silver: {
-        icon: <CircleDashed className="w-8 h-8 text-slate-300" />,
-        bg: "bg-silver/10",
-        border: "border-silver/30",
-      },
-    };
+  {
+    gold: {
+      icon: <Coins className="w-8 h-8 text-gold" />,
+      bg: "bg-gold/10",
+      border: "border-gold/30",
+    },
+    silver: {
+      icon: <CircleDashed className="w-8 h-8 text-slate-300" />,
+      bg: "bg-silver/10",
+      border: "border-silver/30",
+    },
+  };
   const c = config[metal] ?? {
     icon: <Coins className="w-8 h-8 text-muted-foreground" />,
     bg: "bg-muted",
@@ -299,7 +299,7 @@ const PriceCard = ({ metal }: { metal: MetalPrice }) => {
         {/* Divider */}
         <div className="h-px bg-border/60" />
 
-        {/* Footer — yesterday + timestamp */}
+        {/* Footer — Previous close+ timestamp */}
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <div className="flex items-center gap-4">
             <span>
@@ -347,13 +347,13 @@ const MetalPriceDashboard = () => {
   const marketLabel = allUp
     ? "Bullish"
     : allDown
-    ? "Bearish"
-    : "Mixed";
+      ? "Bearish"
+      : "Mixed";
   const marketColor = allUp
     ? "text-chart-up"
     : allDown
-    ? "text-chart-down"
-    : "text-warning";
+      ? "text-chart-down"
+      : "text-warning";
 
   return (
     <section className="py-6 animate-fade-in" id="metal-price-dashboard">
@@ -438,8 +438,8 @@ const MetalPriceDashboard = () => {
               {gold
                 ? timeAgo(gold.updated)
                 : silver
-                ? timeAgo(silver.updated)
-                : "—"}
+                  ? timeAgo(silver.updated)
+                  : "—"}
             </span>
             <span className="hidden sm:inline opacity-40 mx-1">•</span>
             <span className="hidden sm:inline text-[10px] font-bold text-gold/60 uppercase tracking-tighter">
